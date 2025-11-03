@@ -1,38 +1,178 @@
 <!DOCTYPE html>
 <html lang="en">
-<link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;600&display=swap" rel="stylesheet">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Your Name – Portfolio</title>
-  <link rel="stylesheet" href="css/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Name | Research Portfolio</title>
+  <style>
+    :root {
+      --bg: #000;
+      --fg: #fff;
+      --accent: #ff6a00;
+      --nav-size: 80px;
+      --transition: 0.3s ease;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: "Inter", sans-serif;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    /* Navbar */
+    nav {
+      position: fixed;
+      top: 2rem;
+      left: 2rem;
+      width: var(--nav-size);
+      height: var(--nav-size);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-evenly;
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+      transition: all var(--transition);
+    }
+
+    nav button {
+      background: none;
+      border: none;
+      color: var(--accent);
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: transform var(--transition), color var(--transition);
+    }
+
+    nav button:hover {
+      color: #fff;
+      transform: scale(1.1);
+    }
+
+    /* Sections */
+    section {
+      min-height: 100vh;
+      padding: 6rem 10vw;
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    section h1, section h2 {
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+
+    section p {
+      max-width: 600px;
+      line-height: 1.6;
+      font-size: 1rem;
+      color: #ccc;
+    }
+
+    /* Background image (parallax layers) */
+    .bg-layer {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 120%;
+      background-size: cover;
+      background-position: center;
+      z-index: 0;
+      pointer-events: none;
+      transform: translateY(0);
+      transition: transform 0.2s linear;
+    }
+
+    /* Example sections */
+    #home h1 {
+      font-size: 3rem;
+    }
+
+    #research h2 {
+      color: var(--accent);
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      nav {
+        top: 1rem;
+        left: 1rem;
+        width: 60px;
+        height: 60px;
+      }
+      nav button {
+        font-size: 1rem;
+      }
+      section {
+        padding: 6rem 2rem;
+      }
+    }
+  </style>
 </head>
 <body>
-  <header class="navbar">
-    <div class="logo">Timur Abdilov</div>
-    <nav class="nav-links">
-      <a href="research.html">Research</a>
-      <a href="projects.html">Projects</a>
-      <a href="hobbies.html">Hobbies</a>
-      <a href="leadership.html">Leadership</a>
-      <a href="files/resume.pdf" download>Download Resume</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-  </header>
 
-  <section class="hero">
-    <div class="hero-content">
-      <img src="images/Timur_URC2025.jpg" class="profile-pic" alt="Profile Picture" style="width:150px; height:150px; border-radius:50%;">
-      <h1>Timur Abdilov</h1>
-      <p>Senior Electrical Engineering and Physics student at Texas Tech | Research in optics/photonics, RF/Microwave, Applied Physics, and Machine Learning</p>
-    </div>
+  <!-- Background Layers -->
+  <div class="bg-layer" id="bg1" style="background-image: url('background1.jpg'); opacity: 0.15;"></div>
+  <div class="bg-layer" id="bg2" style="background-image: url('background2.jpg'); opacity: 0.1;"></div>
+
+  <!-- Floating Square Navbar -->
+  <nav>
+    <button onclick="scrollToSection('home')">🏠</button>
+    <button onclick="scrollToSection('research')">🔬</button>
+    <button onclick="scrollToSection('publications')">📄</button>
+    <button onclick="scrollToSection('contact')">✉️</button>
+  </nav>
+
+  <!-- Main Content -->
+  <section id="home">
+    <h1>Your Name</h1>
+    <p>Researcher in applied physics, nanotechnology, and computational materials science.  
+       Exploring emergent phenomena in condensed matter systems.</p>
   </section>
 
-  <footer>
-    <p>© 2025 Timur Abdilov, All rights reserved.</p>
-  </footer>
+  <section id="research">
+    <h2>Research</h2>
+    <p>Current focus: Spin-transfer torque effects in magnetic nanostructures, water cluster dynamics, and defect-induced optical transitions in 2D materials.</p>
+  </section>
+
+  <section id="publications">
+    <h2>Publications</h2>
+    <p>List or link to your papers, or auto-generate via BibTeX later.</p>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>Email: <a href="mailto:you@example.com" style="color:var(--accent);text-decoration:none;">you@example.com</a></p>
+  </section>
+
+  <script>
+    // Smooth scroll
+    function scrollToSection(id) {
+      document.getElementById(id).scrollIntoView({ behavior: "smooth" });
+    }
+
+    // Parallax effect
+    window.addEventListener("scroll", () => {
+      const scrollY = window.scrollY;
+      document.getElementById("bg1").style.transform = `translateY(${scrollY * 0.3}px)`;
+      document.getElementById("bg2").style.transform = `translateY(${scrollY * 0.6}px)`;
+    });
+  </script>
 </body>
 </html>
-
-
-
