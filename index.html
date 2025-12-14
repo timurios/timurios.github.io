@@ -1,178 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Your Name | Research Portfolio</title>
-  <style>
-    :root {
-      --bg: #000;
-      --fg: #fff;
-      --accent: #ff6a00;
-      --nav-size: 80px;
-      --transition: 0.3s ease;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html, body {
-      background: var(--bg);
-      color: var(--fg);
-      font-family: "Inter", sans-serif;
-      overflow-x: hidden;
-      scroll-behavior: smooth;
-    }
-
-    /* Navbar */
-    nav {
-      position: fixed;
-      top: 2rem;
-      left: 2rem;
-      width: var(--nav-size);
-      height: var(--nav-size);
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 1rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: space-evenly;
-      z-index: 1000;
-      backdrop-filter: blur(10px);
-      transition: all var(--transition);
-    }
-
-    nav button {
-      background: none;
-      border: none;
-      color: var(--accent);
-      font-size: 1.2rem;
-      cursor: pointer;
-      transition: transform var(--transition), color var(--transition);
-    }
-
-    nav button:hover {
-      color: #fff;
-      transform: scale(1.1);
-    }
-
-    /* Sections */
-    section {
-      min-height: 100vh;
-      padding: 6rem 10vw;
-      position: relative;
-      z-index: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 1rem;
-    }
-
-    section h1, section h2 {
-      font-weight: 600;
-      letter-spacing: 1px;
-    }
-
-    section p {
-      max-width: 600px;
-      line-height: 1.6;
-      font-size: 1rem;
-      color: #ccc;
-    }
-
-    /* Background image (parallax layers) */
-    .bg-layer {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 120%;
-      background-size: cover;
-      background-position: center;
-      z-index: 0;
-      pointer-events: none;
-      transform: translateY(0);
-      transition: transform 0.2s linear;
-    }
-
-    /* Example sections */
-    #home h1 {
-      font-size: 3rem;
-    }
-
-    #research h2 {
-      color: var(--accent);
-    }
-
-    /* Responsive adjustments */
-    @media (max-width: 768px) {
-      nav {
-        top: 1rem;
-        left: 1rem;
-        width: 60px;
-        height: 60px;
-      }
-      nav button {
-        font-size: 1rem;
-      }
-      section {
-        padding: 6rem 2rem;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name - Home</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <nav>
+        <ul>
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="research.html">Research</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="publications.html">Publications</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
 
-  <!-- Background Layers -->
-  <div class="bg-layer" id="bg1" style="background-image: url('background1.jpg'); opacity: 0.15;"></div>
-  <div class="bg-layer" id="bg2" style="background-image: url('background2.jpg'); opacity: 0.1;"></div>
+    <header>
+        <h1>Your Name</h1>
+        <p>Graduate Research Portfolio | Computer Science & AI</p>
+    </header>
 
-  <!-- Floating Square Navbar -->
-  <nav>
-    <button onclick="scrollToSection('home')">🏠</button>
-    <button onclick="scrollToSection('research')">🔬</button>
-    <button onclick="scrollToSection('publications')">📄</button>
-    <button onclick="scrollToSection('contact')">✉️</button>
-  </nav>
+    <div class="container">
+        <section>
+            <h2>Welcome</h2>
+            <div class="card welcome-card">
+                <h3>Research Portfolio</h3>
+                <p>Explore my research interests, projects, and publications in artificial intelligence and computer science.</p>
+                <div class="button-group">
+                    <a href="about.html" class="btn">Learn More</a>
+                    <a href="research.html" class="btn btn-secondary">View Research</a>
+                </div>
+            </div>
+            
+            <h2 style="margin-top: 4rem;">Highlights</h2>
+            <div class="research-grid">
+                <div class="card">
+                    <h3>🎓 Education</h3>
+                    <p>Bachelor's in Computer Science with focus on AI and Machine Learning. Currently applying to graduate programs.</p>
+                </div>
+                <div class="card">
+                    <h3>📚 Publications</h3>
+                    <p>Published research in top-tier conferences including ICML, NeurIPS, and IEEE Transactions.</p>
+                </div>
+                <div class="card">
+                    <h3>💻 Projects</h3>
+                    <p>Developed innovative solutions in deep learning, NLP, and computer vision with practical applications.</p>
+                </div>
+            </div>
+        </section>
+    </div>
 
-  <!-- Main Content -->
-  <section id="home">
-    <h1>Your Name</h1>
-    <p>Researcher in applied physics, nanotechnology, and computational materials science.  
-       Exploring emergent phenomena in condensed matter systems.</p>
-  </section>
-
-  <section id="research">
-    <h2>Research</h2>
-    <p>Current focus: Spin-transfer torque effects in magnetic nanostructures, water cluster dynamics, and defect-induced optical transitions in 2D materials.</p>
-  </section>
-
-  <section id="publications">
-    <h2>Publications</h2>
-    <p>List or link to your papers, or auto-generate via BibTeX later.</p>
-  </section>
-
-  <section id="contact">
-    <h2>Contact</h2>
-    <p>Email: <a href="mailto:you@example.com" style="color:var(--accent);text-decoration:none;">you@example.com</a></p>
-  </section>
-
-  <script>
-    // Smooth scroll
-    function scrollToSection(id) {
-      document.getElementById(id).scrollIntoView({ behavior: "smooth" });
-    }
-
-    // Parallax effect
-    window.addEventListener("scroll", () => {
-      const scrollY = window.scrollY;
-      document.getElementById("bg1").style.transform = `translateY(${scrollY * 0.3}px)`;
-      document.getElementById("bg2").style.transform = `translateY(${scrollY * 0.6}px)`;
-    });
-  </script>
+    <footer>
+        <p>&copy; 2024 Your Name. All rights reserved.</p>
+        <p class="footer-sub">Research Portfolio for Graduate School Applications</p>
+    </footer>
 </body>
 </html>
