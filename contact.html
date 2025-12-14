@@ -1,20 +1,282 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Name - Contact</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>Your Name - Home</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #f59e0b;
+            --secondary: #0a0a0a;
+            --accent: #fbbf24;
+            --text: #e5e5e5;
+            --light: #1a1a1a;
+            --dark-bg: #0f0f0f;
+            --card-bg: #1a1a1a;
+            --border: #2a2a2a;
+            --hover: #fb923c;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: var(--dark-bg);
+            min-height: 100vh;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(245, 158, 11, 0.1);
+            z-index: 1000;
+            border-bottom: 2px solid var(--border);
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text);
+            padding: 0.5rem 1.5rem;
+            transition: all 0.3s;
+            font-weight: 500;
+            position: relative;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--primary);
+        }
+
+        nav a.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            height: 2px;
+            background: var(--primary);
+        }
+
+        header {
+            background: linear-gradient(135deg, #1a0f00 0%, #2d1b00 50%, #1a0f00 100%);
+            color: white;
+            padding: 8rem 2rem 4rem;
+            text-align: center;
+            margin-top: 60px;
+            border-bottom: 3px solid var(--primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 50%, rgba(245, 158, 11, 0.1), transparent 50%);
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            position: relative;
+            text-shadow: 0 0 30px rgba(245, 158, 11, 0.3);
+        }
+
+        header p {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            position: relative;
+            color: var(--accent);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            min-height: calc(100vh - 400px);
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--primary);
+            border-bottom: 3px solid var(--primary);
+            padding-bottom: 0.5rem;
+            display: inline-block;
+            text-shadow: 0 0 20px rgba(245, 158, 11, 0.2);
+        }
+
+        h3 {
+            color: var(--accent);
+            font-size: 1.5rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            transition: all 0.3s;
+            border: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(245, 158, 11, 0.3);
+            border-color: var(--primary);
+        }
+
+        .card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .welcome-card {
+            max-width: 800px;
+            margin: 2rem auto;
+            text-align: center;
+        }
+
+        .welcome-card h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .welcome-card p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .research-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.7rem 1.5rem;
+            background: var(--primary);
+            color: var(--secondary);
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s;
+            margin-top: 1rem;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+        }
+
+        .btn:hover {
+            background: var(--hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            margin-left: 1rem;
+            box-shadow: none;
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: var(--secondary);
+        }
+
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        footer {
+            background: #050505;
+            color: var(--text);
+            text-align: center;
+            padding: 2rem;
+            border-top: 2px solid var(--border);
+        }
+
+        .footer-sub {
+            font-size: 0.9rem;
+            color: #999;
+            margin-top: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            nav ul {
+                padding: 1rem;
+            }
+
+            nav a {
+                padding: 0.5rem 0.8rem;
+                font-size: 0.9rem;
+            }
+
+            .research-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
     <nav>
         <ul>
-            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html" class="active">Home</a></li>
             <li><a href="about.html">About</a></li>
             <li><a href="research.html">Research</a></li>
             <li><a href="projects.html">Projects</a></li>
             <li><a href="publications.html">Publications</a></li>
-            <li><a href="contact.html" class="active">Contact</a></li>
+            <li><a href="contact.html">Contact</a></li>
         </ul>
     </nav>
 
@@ -25,22 +287,29 @@
 
     <div class="container">
         <section>
-            <h2>Contact</h2>
-            <div class="card contact-card">
-                <h3>Get in Touch</h3>
-                <p class="large-text">
-                    I'm always interested in discussing research opportunities, collaborations, and graduate programs. Feel free to reach out!
-                </p>
-                <div class="contact-info">
-                    <p><strong>Email:</strong> your.email@university.edu</p>
-                    <p><strong>Location:</strong> City, State/Country</p>
-                    <p><strong>Office Hours:</strong> Available by appointment</p>
+            <h2>Welcome</h2>
+            <div class="card welcome-card">
+                <h3>Research Portfolio</h3>
+                <p>Explore my research interests, projects, and publications in artificial intelligence and computer science.</p>
+                <div class="button-group">
+                    <a href="about.html" class="btn">Learn More</a>
+                    <a href="research.html" class="btn btn-secondary">View Research</a>
                 </div>
-                <div class="contact-links">
-                    <a href="mailto:your.email@university.edu" class="btn">Send Email</a>
-                    <a href="https://github.com" class="btn btn-secondary">GitHub</a>
-                    <a href="https://linkedin.com" class="btn btn-secondary">LinkedIn</a>
-                    <a href="https://scholar.google.com" class="btn btn-secondary">Google Scholar</a>
+            </div>
+            
+            <h2 style="margin-top: 4rem;">Highlights</h2>
+            <div class="research-grid">
+                <div class="card">
+                    <h3>🎓 Education</h3>
+                    <p>Bachelor's in Computer Science with focus on AI and Machine Learning. Currently applying to graduate programs.</p>
+                </div>
+                <div class="card">
+                    <h3>📚 Publications</h3>
+                    <p>Published research in top-tier conferences including ICML, NeurIPS, and IEEE Transactions.</p>
+                </div>
+                <div class="card">
+                    <h3>💻 Projects</h3>
+                    <p>Developed innovative solutions in deep learning, NLP, and computer vision with practical applications.</p>
                 </div>
             </div>
         </section>
@@ -52,4 +321,3 @@
     </footer>
 </body>
 </html>
-
