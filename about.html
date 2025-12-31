@@ -318,33 +318,25 @@
         <p>&copy; 2025-2026 Timur Abdilov All rights reserved.</p>
     </footer>
 
+    
+    <div id="pdfModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h3 id="pdfTitle">Document Viewer</h3>
+            <iframe id="pdfViewer" class="pdf-viewer"></iframe>
+        </div>
+    </div>
+
     <script>
         function openPDF(filename) {
-            const modal = document.getElementById('pdfModal');
-            const viewer = document.getElementById('pdfViewer');
-            const title = document.getElementById('pdfTitle');
-            
-            // Show modal
-            modal.style.display = 'block';
-            
-            // Try to load the PDF
-            viewer.src = filename;
-            title.textContent = 'CV - Academic';
-            
-            // Add error handling
-            viewer.onerror = function() {
-                alert('PDF file not found. Please make sure "' + filename + '" is in the same folder as this HTML file.\n\nAlternatively, you can:\n1. Check the file name is correct\n2. Try opening the PDF directly by clicking here');
-                closeModal();
-                // Try to open in new tab as fallback
-                window.open(filename, '_blank');
-            };
+            document.getElementById('pdfModal').style.display = 'block';
+            document.getElementById('pdfViewer').src = filename;
+            document.getElementById('pdfTitle').textContent = 'Document: ' + filename;
         }
 
         function closeModal() {
-            const modal = document.getElementById('pdfModal');
-            const viewer = document.getElementById('pdfViewer');
-            modal.style.display = 'none';
-            viewer.src = '';
+            document.getElementById('pdfModal').style.display = 'none';
+            document.getElementById('pdfViewer').src = '';
         }
 
         window.onclick = function(event) {
