@@ -1,1 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timur Abdilov - About</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        :root {
+            --primary: #f59e0b;
+            --secondary: #0a0a0a;
+            --accent: #fbbf24;
+            --text: #e5e5e5;
+            --light: #1a1a1a;
+            --dark-bg: #0f0f0f;
+            --card-bg: #1a1a1a;
+            --border: #2a2a2a;
+            --hover: #fb923c;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: var(--dark-bg);
+            min-height: 100vh;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(245, 158, 11, 0.1);
+            z-index: 1000;
+            border-bottom: 2px solid var(--border);
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text);
+            padding: 0.5rem 1.5rem;
+            transition: all 0.3s;
+            font-weight: 500;
+            position: relative;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--primary);
+        }
+
+        nav a.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            height: 2px;
+            background: var(--primary);
+        }
+
+        header {
+            background: linear-gradient(135deg, #1a0f00 0%, #2d1b00 50%, #1a0f00 100%);
+            color: white;
+            padding: 8rem 2rem 4rem;
+            text-align: center;
+            margin-top: 60px;
+            border-bottom: 3px solid var(--primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 50%, rgba(245, 158, 11, 0.1), transparent 50%);
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            position: relative;
+            text-shadow: 0 0 30px rgba(245, 158, 11, 0.3);
+        }
+
+        header p {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            position: relative;
+            color: var(--accent);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            min-height: calc(100vh - 400px);
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--primary);
+            border-bottom: 3px solid var(--primary);
+            padding-bottom: 0.5rem;
+            display: inline-block;
+            text-shadow: 0 0 20px rgba(245, 158, 11, 0.2);
+        }
+
+        h3 {
+            color: var(--accent);
+            font-size: 1.5rem;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .profile-img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(245, 158, 11, 0.2);
+            border: 2px solid var(--border);
+        }
+
+        .large-text {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        .skills-header {
+            color: var(--accent);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .tag {
+            background: rgba(245, 158, 11, 0.1);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--accent);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.7rem 1.5rem;
+            background: var(--primary);
+            color: var(--secondary);
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s;
+            margin-top: 1rem;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+        }
+
+        .btn:hover {
+            background: var(--hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            margin-left: 1rem;
+            box-shadow: none;
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: var(--secondary);
+        }
+
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        footer {
+            background: #050505;
+            color: var(--text);
+            text-align: center;
+            padding: 2rem;
+            border-top: 2px solid var(--border);
+        }
+
+        .footer-sub {
+            font-size: 0.9rem;
+            color: #999;
+            margin-top: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            header h1 {
+                font-size: 2rem;
+            }
+
+            nav ul {
+                padding: 1rem;
+            }
+
+            nav a {
+                padding: 0.5rem 0.8rem;
+                font-size: 0.9rem;
+            }
+
+            .btn-secondary {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html" class="active">About</a></li>
+            <li><a href="research.html">Research</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="publications.html">Publications</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <header>
+        <h1>Timur Abdilov</h1>
+        <p>Prosepctive Graduate Student Portfolio | Electrical Engineering & Applied Physics</p>
+    </header>
+
+    <div class="container">
+        <section>
+            <h2>About Me</h2>
+            <div class="about-grid">
+                <div>
+                    <img src="your-photo.jpg" alt="Profile" class="profile-img">
+                </div>
+                <div>
+                    <p class="large-text">
+                        Welcome to my research portfolio! I'm a passionate researcher with interests in artificial intelligence, machine learning, and computational systems. I'm currently applying to graduate programs to further my research in these areas.
+                    </p>
+                    <p>
+                        My research focuses on developing innovative solutions to complex problems through interdisciplinary approaches. I have experience in both theoretical and applied research, with publications in peer-reviewed conferences and journals.
+                    </p>
+                    <p>
+                        I hold a Bachelor's degree in Computer Science and have worked on various projects spanning machine learning, data analysis, and software engineering. I'm excited to continue pushing the boundaries of what's possible in my field.
+                    </p>
+                    <h3 class="skills-header">Skills & Expertise</h3>
+                    <div class="tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">TensorFlow</span>
+                        <span class="tag">PyTorch</span>
+                        <span class="tag">Deep Learning</span>
+                        <span class="tag">NLP</span>
+                        <span class="tag">Computer Vision</span>
+                        <span class="tag">Data Science</span>
+                        <span class="tag">Research</span>
+                    </div>
+                    <div class="button-group">
+                        <a href="cv.pdf" class="btn">Download CV</a>
+                        <a href="contact.html" class="btn btn-secondary">Get in Touch</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2025-2026 Timur Abdilov All rights reserved.</p>
+    </footer>
+</body>
+</html>
